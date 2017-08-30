@@ -1,0 +1,130 @@
+$def with (data)
+<style>
+	.weblog{
+		font-size: 14px;
+	    display:inline-block;
+		line-height:30px;
+	}
+	.weblog em{
+		font-style:normal;
+		color:#666;
+		margin: 0 30px;
+	}
+	.weblog span{
+		margin-right:30px;
+	}
+	.weblog a{
+		color:#20a53a;
+	}
+</style>
+<div class="main-content">
+		<div class="container-fluid" style="padding-bottom: 50px;">
+			<div class="pos-box bgw mtb15">
+				<div class="position f14 c9 pull-left">
+					<a class="plr10 c4" href="/">首页</a>/<span class="plr10 c4">系统安全</span>
+				</div>
+				<div class="search pull-right">
+					<form target="hid" onsubmit='getLogs(1,$$("#SearchValue").prop("value"))'>
+						<input type="text" id="SearchValue" class="ser-text pull-left" placeholder="搜索日志" />
+						<button type="button" class="ser-sub pull-left" onclick='getLogs(1,$$("#SearchValue").prop("value"))'></button>
+					</form>
+					<iframe name='hid' id="hid" style="display:none"></iframe>
+				</div>
+			</div>
+			<div class="safe container-fluid bgw mtb15 pd15">
+				<div class="mr50 pull-left">
+					<form>
+						<div class="ss-text pull-left">
+							<em>启用SSH</em>
+							<div class='ssh-item' id="in_safe">
+								
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="mr50 pull-left">
+					<div class="ss-text pull-left mr5">
+						<em>SSH端口：</em>
+						<input type="text" class="bt-input-text" id="mstscPort" value=""  />
+					</div>
+					<div class="ss-text pull-left">
+						<button id="mstscSubmit" onclick='mstsc($$("#mstscPort").prop("value"))' class="btn btn-default btn-sm" type="button">更改</button>
+					</div>
+				</div>
+				<div class="mr50 pull-left" style="border-right: 1px solid #ccc; padding-right: 40px;">
+					<div class="ss-text pull-left">
+						<em>启用禁ping</em>
+						<div class='ssh-item' id="isPing">
+						</div>
+					</div>
+				</div>
+				<div class="weblog">
+					<span>Web日志：</span><a href="javascript:openPath('$web.ctx.session.logsPath');">$web.ctx.session.logsPath</a><em id="logSize">0KB</em>
+					<button class="btn btn-default btn-sm" onclick="CloseLogs();">清空</button>
+				</div>
+			</div>
+			<div class="white-black-ip bgw mtb15">
+				<div class="black-ip">
+					<div class="def-log">
+						<div class="title c6 plr15">
+							<h3 class="f16">防火墙</h3>
+							<select id="firewalldType" class="bt-input-text" name="type" style="width:95px;">
+								<option value="port">放行端口</option>
+								<option value="address">屏蔽IP</option>
+							</select>
+							<input type="text" class="bt-input-text" style="width: 120px;" id="AcceptPort" placeholder="端口">
+							<input type="text" class="bt-input-text" id="Ps" placeholder="备注/说明">
+							<button id="toAccept" onclick="AddAcceptPort()" class="btn btn-default btn-sm va0" type="button">放行</button>
+							<span id="f-ps" style="margin-left: 10px;">说明: 支持放行端口范围，如: 3000:3500</span>
+						</div>
+						<div class="divtable pd15">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+								<thead>
+								<tr>
+									<th>编号</th>
+									<th>行为</th>
+									<th>状态<a href="https://www.bt.cn/bbs/thread-4708-1-1.html" class="bt-ico-ask" target="_blank" title="点击查看说明">?</a></th>
+									<th>添加时间</th>
+									<th>说明</th>
+									<th width="50px" class="text-right">操作</th>
+								</tr>
+								</thead>
+								<tbody id="firewallBody"></tbody>
+							</table>
+							<div class="dataTables_paginate paging_bootstrap pagination">
+								<ul id="firewallPage" class="page"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="white-black-ip bgw mtb15">
+				<div class="black-ip">
+					<div class="def-log">
+						<div class="title c6 plr15">
+							<h3 class="f16">面板操作日志</h3>
+							<a class="btn btn-default btn-sm" onclick="delLogs();" style="margin-top: 1px;">清空</a>
+						</div>
+						<div class="divtable pd15">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table table-hover">
+								<thead>
+								<tr>
+									<th>编号</th>
+									<th>操作类型</th>
+									<th>详情</th>
+									<th>操作时间</th>
+								</tr>
+								</thead>
+								<tbody id="logsBody"></tbody>
+							</table>
+							<div class="dataTables_paginate paging_bootstrap pagination">
+								<ul id="logsPage" class="page"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
+<script src="/static/js/firewall.js"></script>

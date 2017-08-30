@@ -1,0 +1,55 @@
+$def with (tData)
+<div class="main-content pb55">
+	<div class="container-fluid">
+		<div class="pos-box bgw mtb15">
+			<div class="position f14 c9 pull-left">
+				<a class="plr10 c4" href="/">首页</a>/<span class="plr10 c4">FTP管理</span>
+			</div>
+			<div class="search pull-right">
+				<form target="hid" onsubmit='getFtp(1,$$("#SearchValue").prop("value"))'>
+					<input type="text" id="SearchValue" class="ser-text pull-left" placeholder="搜索FTP" />
+					<button type="button" class="ser-sub pull-left" onclick='getFtp(1,$$("#SearchValue").prop("value"))'></button>
+				</form>
+				<iframe name='hid' id="hid" style="display:none"></iframe>
+			</div>
+		</div>
+		<div class="safe bgw mtb15 pd15">
+			<div class="important-title">
+				<p><span class="glyphicon glyphicon-alert" style="color: #f39c12; margin-right: 10px;"></span> 当前FTP地址为：ftp://$web.ctx.session.address:$web.ctx.session.port</p>
+			</div>
+			<button onclick="ftpAdd()" class="btn btn-success btn-sm" type="button">添加FTP</button>
+			<button onclick="ftpPortEdit($web.ctx.session.port)" class="btn btn-default btn-sm" type="button" style="margin-left:5px">修改FTP端口</button>
+			<span id="allDelete" style="float: right;display: none;">
+				<button onclick="allDeleteFtp();" class="btn btn-default btn-sm">删除选中</button>
+			</span>
+			<div class="divtable mtb10">
+				<table class="table table-hover" width="100%" border="0" cellpadding="0" cellspacing="0">
+					<thead>
+					<tr>
+						<th width='30'><input type="checkbox" onclick="checkSelect();" id="setBox"></th>
+                        <th onclick="listOrder('name','ftp',this)" style="cursor: pointer;">用户名<span class="glyphicon glyphicon-triangle-top" style="margin-left:5px;color:#bbb"></span></th>
+                        <th width="15%">密码</th>
+                        <th onclick="listOrder('status','ftp',this)" style="cursor: pointer;" width="100">状态<span class="glyphicon glyphicon-triangle-top" style="margin-left:5px;color:#bbb"></span></th>
+                        <th>根目录</th>
+                        <th width="15%">备注</th>
+                        <th width="100" class="text-right">操作</th>
+					</tr>
+					</thead>
+					<tbody id="ftpBody"></tbody>
+				</table>
+				<div class="dataTables_paginate paging_bootstrap pagination">
+					<ul id="ftpPage" class="page"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="/static/js/ftp.js"></script>
+<script type="text/javascript">
+	$if not tData['isSetup']:
+		layer.msg('请先安装Prue-Ftpd！<a href="/soft" style="color:#20a53a; float: right;">去安装</a>',{icon:7,time:0,shade: [0.3, '#000']});
+		$$(".layui-layer-shade").css("margin-left","180px");
+	setTimeout(function(){
+		getFtp(1);
+	},300);
+</script>

@@ -1,0 +1,13 @@
+baotamiaban:
+  image: chenzhuoqi/baota:centos7.2-98617c88
+  ports:
+    - 20:20
+    - 21:21
+    - 80:80
+    - 443:443
+    - 888:888
+    - 8888:8888
+  volumes:
+    - ./www:/www
+  privileged: true
+  command: bash /bootstrap.sh

@@ -1,0 +1,48 @@
+$def with (tData)
+<div class="main-content">
+	<div class="container-fluid" style="padding-bottom:50px">
+		<div class="file-box bgw mtb15" style="position:relative; padding-top:110px">
+			<div id="tipTools" class="plr15">
+				<div class="ptb15">
+					<div class="clearfix">
+						<div class="pull-left">
+							<button id="backBtn" class="backBtn btn btn-default btn-sm glyphicon glyphicon-arrow-left pull-left" title="后退" onClick="BackDir()"></button>
+							<button class="backBtn refreshBtn btn btn-default btn-sm glyphicon glyphicon-refresh pull-right" title="刷新" style="margin-left:-1px;"></button>
+							<span id='DirPathPlace' class="pull-left"><input id="fileInputPath" type="text"></span>
+							<span id='PathPlaceBtn' class="pull-left"></span>
+						</div>
+						<div class="pull-left mlr15" style="line-height:26px"><span id='DirInfo'></span></div>
+					</div>
+				</div>
+				<div class="clearfix ptb10">
+					<button class="btn btn-default btn-sm pull-left" onclick="UploadFiles()">上传</button>
+					<button class="btn btn-default btn-sm pull-left" onclick="DownloadFile()" title='下载文件到服务器' style="margin:0 5px">远程下载</button>
+					<span id='BarTools'></span>
+					<span id='Batch' style="background-color:#fff;position:absolute;right:190px;z-index:10"></span>
+					<span id='comlist' class="comlist"></span>
+					<div class="btn-group btn-group-sm pull-right" style="margin-right:5px;">
+						<button id="set_icon" title="图标排列" type="button" class="btn btn-default">
+							<i class="glyphicon glyphicon-th"></i>
+						</button>
+						<button id="set_list" title="列表排列" type="button" class="btn btn-default active">
+							<i class="glyphicon glyphicon-th-list"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="divtable pd15" id="fileCon"></div>
+		</div>
+	</div>
+</div>
+</div>
+<ul id="rmenu" class="dropdown-menu" style="display:none">
+	<li onclick="javascript:Batch(1);"><a style="cursor: pointer;">复制</a></li>
+	<li onclick="javascript:Batch(2);"><a style="cursor: pointer;">剪切</a></li>
+	<li onclick="javascript:Batch(5);"><a style="cursor: pointer;">压缩</a></li>
+	<li onclick="javascript:Batch(3);"><a style="cursor: pointer;">权限</a></li>
+	<li onclick="javascript:Batch(4);"><a style="cursor: pointer;">删除</a></li>
+</ul>
+<script src="/static/js/jquery-ui.min.js"></script>
+<script src="/static/js/jquery.contextify.min.js"></script>
+<script src="/static/js/files.js?1.1"></script>
+<script src="/static/js/upload.js?1.2"></script>
