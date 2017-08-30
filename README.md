@@ -39,7 +39,7 @@ yum install -y wget && wget -O install.sh http://download.bt.cn/install/install.
 安装完了就可以看到账户名密码
 
 ```bash
-Bt-Panel: http://123.207.182.84:8888
+Bt-Panel: http://xxxxxxxx:8888
 username: admin
 password: XXXXXX
 ```
@@ -54,5 +54,4 @@ chmod +x /bootstrap.sh
 ```bash
 docker commit XXX(containerId) baota:XXXXXX(password)
 ```
-
 
