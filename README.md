@@ -4,7 +4,7 @@ https://hub.docker.com/r/chenzhuoqi/baota/
 
 ## How to run
 ```bash
-docker run --rm -d -p 20:20 -p 21:21 -p 80:80 -p 443:443 -p 888:888 -p 8888:8888 -v $PWD/www:/www chenzhuoqi/baota:5.1-64b0dfc8 bash /bootstrap.sh
+docker run --rm -d -p 20:20 -p 21:21 -p 80:80 -p 443:443 -p 888:888 -p 8888:8888 -v $PWD/www:/www chenzhuoqi/baota:centos7.2-98617c88 bash /bootstrap.sh
 # or
 docker-compose up -d
 
